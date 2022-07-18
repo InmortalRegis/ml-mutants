@@ -1,15 +1,36 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"strings"
 	"time"
 )
 
-func isMutant(dna []string) bool {
+func contains(s []string, e string) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
+func isMutant(dna []string) (bool, error) {
+	base := []string{"A", "T", "C", "G"}
 	matrix := make([][]string, len(dna))
 	for index, v := range dna {
 		row := strings.Split(v, "")
+		for _, e := range row {
+			if !contains(base, e) {
+				return false, errors.New("Invalid DNA")
+			}
+		}
+		// if !isDna {
+		// 	fmt.Printf("Invalid DNA sequence %s", v)
+		// 	return false
+		// }
 		matrix[index] = row
 	}
 	fmt.Println(matrix)
@@ -48,12 +69,17 @@ func isMutant(dna []string) bool {
 
 	}
 
-	return isMutant
+	return isMutant, nil
 }
 
 func main() {
 	start := time.Now()
-	dna := []string{"TTGAGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
-	fmt.Println(isMutant(dna))
+	dna := []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
+	isMutant, err := isMutant(dna)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(isMutant)
+
 	fmt.Println(time.Since(start))
 }

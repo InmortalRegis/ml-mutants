@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 func isMutant(dna []string) bool {
@@ -51,7 +52,8 @@ func isMutant(dna []string) bool {
 }
 
 func main() {
+	start := time.Now()
 	dna := []string{"TTGAGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
 	fmt.Println(isMutant(dna))
-
+	fmt.Println(time.Since(start))
 }

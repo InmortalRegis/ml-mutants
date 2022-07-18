@@ -27,10 +27,6 @@ func isMutant(dna []string) (bool, error) {
 				return false, errors.New("Invalid DNA")
 			}
 		}
-		// if !isDna {
-		// 	fmt.Printf("Invalid DNA sequence %s", v)
-		// 	return false
-		// }
 		matrix[index] = row
 	}
 	fmt.Println(matrix)

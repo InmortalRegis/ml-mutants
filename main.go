@@ -29,7 +29,6 @@ func isMutant(dna []string) (bool, error) {
 		}
 		matrix[index] = row
 	}
-	fmt.Println(matrix)
 	var i, j int
 	isMutant := false
 	for i = 0; i < len(matrix); i++ {
@@ -38,25 +37,26 @@ func isMutant(dna []string) (bool, error) {
 				break
 			}
 			if i < len(matrix)-3 {
+				// Diagonal
 				if matrix[i][j] == matrix[i+1][j+1] && matrix[i][j] == matrix[i+2][j+2] && matrix[i][j] == matrix[i+3][j+3] {
-					fmt.Printf("Value %v %v %v %v\n", matrix[i+1][j+1], matrix[i+2][j+2], matrix[i+3][j+3], matrix[i][j])
-					fmt.Println("Is Mutant")
+					fmt.Println("Diagonal")
+					fmt.Printf("m[%d][%d]: %s %s %s %s \n", i, j, matrix[i][j], matrix[i+1][j+1], matrix[i+2][j+2], matrix[i+3][j+3])
 					isMutant = true
 					break
 				}
 
 			}
-
+			// Horizontal
 			if matrix[i][j] == matrix[i][j+1] && matrix[i][j] == matrix[i][j+2] && matrix[i][j] == matrix[i][j+3] {
-				fmt.Printf("Value %v %v %v %v\n", matrix[i][j+1], matrix[i][j+2], matrix[i][j+3], matrix[i][j])
-				fmt.Println("Is Mutant")
+				fmt.Println("Horizontal")
+				fmt.Printf("m[%d][%d]: %s %s %s %s \n", i, j, matrix[i][j], matrix[i][j+1], matrix[i][j+2], matrix[i][j+3])
 				isMutant = true
 				break
 			}
-
+			// Vertical
 			if matrix[j][i] == matrix[j+1][i] && matrix[j][i] == matrix[j+2][i] && matrix[j][i] == matrix[j+3][i] {
-				fmt.Printf("Value %v %v %v %v\n", matrix[j+1][i], matrix[j+2][i], matrix[j+3][i], matrix[j][i])
-				fmt.Println("Is Mutant")
+				fmt.Println("Vertical")
+				fmt.Printf("m[%d][%d]: %s %s %s %s \n", j, i, matrix[j][i], matrix[j+1][i], matrix[j+2][i], matrix[j+3][i])
 				isMutant = true
 				break
 			}
@@ -75,7 +75,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(isMutant)
-
+	fmt.Println("Is Mutant: ", isMutant)
 	fmt.Println(time.Since(start))
 }

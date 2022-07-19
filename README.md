@@ -1,4 +1,5 @@
 # Golang ML Mutants
+![Coverage](https://img.shields.io/badge/Coverage-88.9%25-brightgreen)
 
 
 ## Run locally

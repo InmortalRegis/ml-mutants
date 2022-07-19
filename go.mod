@@ -1,4 +1,4 @@
-module github.com/inmortalregis/mercadolibre-mutants
+module github.com/InmortalRegis/ml-mutants
 
 go 1.18
 

@@ -1,17 +1,13 @@
 package main
 
-import (
-	"log"
-	"net/http"
-
-	"github.com/gorilla/mux"
-)
+import "os"
 
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/mutant", isMutantHandler).Methods(http.MethodPost)
-	log.Print("Starting server on http://localhost:8080")
-	err := http.ListenAndServe(":8080", r)
+	a := App{}
+	a.Initialize(
+		os.Getenv("APP_DB_USERNAME"),
+		os.Getenv("APP_DB_PASSWORD"),
+		os.Getenv("APP_DB_NAME"))
 
-	log.Fatal(err)
+	a.Run(":8080")
 }

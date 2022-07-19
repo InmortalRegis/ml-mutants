@@ -29,7 +29,7 @@ func isMutant(dna []string) (bool, error) {
 		row := strings.Split(v, "")
 		for _, e := range row {
 			if !contains(base, e) {
-				return false, errors.New("Invalid DNA")
+				return false, errors.New("invalid DNA")
 			}
 		}
 		matrix[index] = row
